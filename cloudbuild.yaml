@@ -1,0 +1,52 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: "E2_HIGHCPU_32"
+steps:
+  # Step 1
+  # - name: "gcr.io/cloud-builders/docker"
+  #   entrypoint: "bash"
+  #   args:
+  #     [
+  #       "-c",
+  #       "docker pull europe-west2-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend:latest || exit 0",
+  #     ]
+  # Step 2
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "build",
+        "-t",
+        "europe-west2-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend:latest",
+        ".",
+      ]
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "push",
+        "europe-west2-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend:latest",
+      ]
+    #    dir: 'frontend'
+    # Step 3
+    #  - name: 'gcr.io/cloud-builders/kubectl'
+    #    args: ['apply', '-f', 'k8s/']
+    #    env:
+    #      - 'CLOUDSDK_COMPUTE_ZONE=europe-west6-a'
+    #      - 'CLOUDSDK_CONTAINER_CLUSTER=bosler-dev-1'
+    # Step 4
+    # - name: "gcr.io/cloud-builders/kubectl"
+    #   args:
+    #     [
+    #       "set",
+    #       "image",
+    #       "deployment",
+    #       "frontend",
+    #       "frontend=europe-west2-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend:latest",
+    #       "--namespace",
+    #       "bosler",
+    #     ]
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=europe-west2-b"
+      - "CLOUDSDK_CONTAINER_CLUSTER=bosler"
+    # Push the image to Google Container Registry with the latest tag
+images: ["europe-west2-docker.pkg.dev/$PROJECT_ID/bosler-cr/frontend:latest"]
+timeout: 7200s

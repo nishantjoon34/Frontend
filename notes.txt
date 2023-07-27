@@ -1,0 +1,39 @@
+fix !== []
+fix as unknown
+
+
+fix dashboard cache
+
+
+yaxis: [8, 9]
+xaxis: ["completed , bbt", "cancelled, js"]
+
+yaxis: ["completed": [[9, "bbt"]], red
+        "cancelled": [[8, "js"], [2, "chicken"]], green
+        ]
+
+xAxis: ["bbt", "js", "chicken"]
+
+{
+  "fetchCachedData": true,
+  "chartUUID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "datasetId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "branch": "master",
+  "chartType": "barChart",
+  "limit": -1,
+  "series": [
+    {
+      "seriesName": "Series 1",
+      "columnName": "Price",
+      "aggregate": "string",
+      "groupBy": [
+        "string", ""
+      ],
+      "sort": "asc|desc"
+    }
+  ],
+  "userLocale": "en",
+  "xaxis": "string",
+  "xaxisTimeGrain": "string",
+  "xaxisSort": "string"
+}
